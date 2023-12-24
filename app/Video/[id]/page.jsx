@@ -65,7 +65,7 @@ const VideoPage = ({ params }) => {
   };
 
   return (
-    <main>
+    <main className=' mb-60'>
       <div className='header-max-h'>
         {currentVideo ? (
           <div className="video-container">
