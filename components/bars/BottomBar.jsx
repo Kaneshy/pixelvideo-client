@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { sidebarLinks } from "@/constants";
+import Gotoprofile from "../Gotoprofile";
 
 function Bottombar() {
   const pathname = usePathname();
@@ -37,6 +38,7 @@ function Bottombar() {
             </Link>
           );
         })}
+        <Gotoprofile/>
       </div>
     </section>
   );
