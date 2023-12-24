@@ -21,7 +21,7 @@ export async function POST(req, res) {
         //         'Content-Type': 'application/json'
         //     }
         // })
-        const data = await axios.post('http://localhost:8800/api/auth/google', { email, name, img })
+        const data = await axios.post('https://pixelvideo.up.railway.app/api/auth/google', { email, name, img })
 
         // console.log('user/route/2', data)
         // console.log('user/route/21', data.data)
@@ -74,7 +74,7 @@ export async function PUT(request) {
                 'Content-Type': 'application/json' // Adjust content type if necessary
             }
         };
-        const data = await axios.put('http://localhost:8800/api/users/658644414a035826f6a410aa', {
+        const data = await axios.put('https://pixelvideo.up.railway.app/api/users/658644414a035826f6a410aa', {
             name: newName
         }, config)
         console.log('dddd', data.data)

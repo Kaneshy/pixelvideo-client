@@ -20,7 +20,7 @@ export async function POST(req, res) {
               'Content-Type': 'application/json' // Adjust content type if necessary
             }
           };
-        const data = await axios.post('http://localhost:8800/api/videos' ,{
+        const data = await axios.post('https://pixelvideo.up.railway.app/api/videos' ,{
             body
         }, config)
         console.log('dddd', data.data)

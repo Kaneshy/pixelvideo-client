@@ -5,7 +5,7 @@ export async function GET(request, {params}) {
     console.log('params tags server nextjs', params.id)
     const tags = params.id
   try {
-    const response = await axios.get(`http://localhost:8800/api/videos/tags?tags=${tags}`);
+    const response = await axios.get(`https://pixelvideo.up.railway.app/api/videos/tags?tags=${tags}`);
     const responseData = response.data; // Extract necessary data from the response
     console.log('responseData', responseData)
     console.log('responseData', response.status)

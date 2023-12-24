@@ -19,7 +19,7 @@ export async function PUT(request, {params}) {
                 'Content-Type': 'application/json' // Adjust content type if necessary
             }
         };
-        const data = await axios.put(`http://localhost:8800/api/users/${params.id}`, {
+        const data = await axios.put(`https://pixelvideo.up.railway.app/api/users/${params.id}`, {
             name: newName
         }, config)
         console.log('dddd', data.data)

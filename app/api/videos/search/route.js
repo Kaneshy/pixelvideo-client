@@ -8,7 +8,7 @@ export async function GET(req, res) {
   const queryValueB = queryValue.toString()
 
 try {
-  const response = await axios.get(`http://localhost:8800/api/videos/search?q=${queryValueB}`);
+  const response = await axios.get(`https://pixelvideo.up.railway.app/api/videos/search?q=${queryValueB}`);
   const responseData = response.data; // Extract necessary data from the response
   return NextResponse.json(responseData)
   } catch (error) {

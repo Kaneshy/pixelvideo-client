@@ -21,7 +21,7 @@ export async function POST(req, { params }) {
               'Content-Type': 'application/json' // Adjust content type if necessary
             }
           };
-        const data = await axios.post('http://localhost:8800/api/comments' ,{
+        const data = await axios.post('https://pixelvideo.up.railway.app/api/comments' ,{
             desc:bodyData,
             videoId:params.id
         }, config)

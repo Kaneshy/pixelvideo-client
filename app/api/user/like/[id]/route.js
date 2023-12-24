@@ -19,7 +19,7 @@ export async function PUT(request, { params }) {
             }
         };
 
-        const data = await axios.put(`http://localhost:8800/api/users/like/${params.id}`,{}, config)
+        const data = await axios.put(`https://pixelvideo.up.railway.app/api/users/like/${params.id}`,{}, config)
         // console.log('dddd', data)
 
         return NextResponse.json('updated')
