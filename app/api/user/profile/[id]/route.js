@@ -4,13 +4,9 @@ import { NextResponse } from "next/server"
 export async function PUT(request, {params}) {
 
     const b = request.cookies.get('access_token')
-    console.log('runing', b)
-    console.log('params profile', params.id)
     try {
         const da = await request.json()
         const newName = da.name
-        console.log('route.js', da)
-        console.log('try running')
 
 
         const config = {
@@ -22,9 +18,7 @@ export async function PUT(request, {params}) {
         const data = await axios.put(`https://pixelvideo.up.railway.app/api/users/${params.id}`, {
             name: newName
         }, config)
-        console.log('dddd', data.data)
 
-        console.log('try running s', data.statusText)
         return NextResponse.json(data.data)
     } catch (error) {
         console.log('Error', error.message)

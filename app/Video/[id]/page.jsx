@@ -6,6 +6,7 @@ import { fetchSuccess, like, dislike } from "@/redux/features/videoSlice.js";
 import { subscription } from "@/redux/features/userSlice.js";
 import CommentsPage from '@/components/Comments';
 import { BiLike, BiSolidLike, BiDislike, BiSolidDislike } from "react-icons/bi";
+import Link from 'next/link';
 
 
 const VideoPage = ({ params }) => {
@@ -13,8 +14,6 @@ const VideoPage = ({ params }) => {
 
   const { currentUser } = useSelector((state) => state.user)
   const { currentVideo } = useSelector((state) => state.video)
-  console.log('video[id]', currentVideo)
-  console.log('vUser', currentUser)
 
   const dispatch = useDispatch()
 
@@ -24,20 +23,16 @@ const VideoPage = ({ params }) => {
   // const dispatch = useDispatch
 
   useEffect(() => {
-    console.log('useefect')
     const fetchVideos = async () => {
       try {
         const res = await axios.get(`/api/videos/video/${params.id}`);
-        console.log('gfgf', res.data)
         const channelRes = await axios.get(`/api/user/${res.data.userId}`);
 
-        console.log('videogfgf', channelRes.data)
 
         // setvideo(res.data);
         setchannel(channelRes.data);
         dispatch(fetchSuccess(res.data))
 
-        console.log('videoId', currentVideo._id)
 
 
       } catch (error) {
@@ -57,7 +52,6 @@ const VideoPage = ({ params }) => {
   };
 
   const handleSub = async () => {
-    console.log('handlesub')
     currentUser.subscribedUsers.includes(channel._id)
       ? await axios.put(`/api/user/unsub/${channel._id}`)
       : await axios.put(`/api/user/sub/${channel._id}`);
@@ -90,10 +84,10 @@ const VideoPage = ({ params }) => {
                   <img
                     className='rounded-full mr-2'
                     width={45} src={channel.img} alt="" />
-                  <div>
+                  <Link href={`/Profile/${channel._id}`}>
                     <p className='text-small-semibold'>{channel.name}</p>
                     <p className='text-small-medium text-neutral-400'> {channel.subscribers} subscribers</p>
-                  </div>
+                  </Link>
                 </div>
 
                 <div className='flex items-center gap-x-4  '>

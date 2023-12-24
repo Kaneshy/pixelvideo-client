@@ -72,6 +72,11 @@ body {
   max-width: 1700px;
 }
 
+.max-w-c {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
 .color-btn-gray {
   background-color: #3f3f3f;
 }

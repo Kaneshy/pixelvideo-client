@@ -3,6 +3,7 @@ import { sidebarLinks, sidebarTrens } from '@/constants'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
+import Gotoprofile from '../Gotoprofile'
 
 const LeftSidebar = () => {
 
@@ -36,6 +37,7 @@ const LeftSidebar = () => {
             </Link>
           )
         })}
+        <Gotoprofile/>
       </div>
 
       <div className="flex w-full pt-2 flex-1 flex-col gap-5 px-6 ">

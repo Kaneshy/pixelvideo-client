@@ -6,8 +6,6 @@ import { NextResponse } from "next/server"
 export async function PUT(request, { params }) {
 
     const b = request.cookies.get('access_token')
-    console.log('runing jnjn', b)
-    console.log('video.id server next', params.id)
 
 
 

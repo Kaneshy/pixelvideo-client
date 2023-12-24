@@ -31,7 +31,6 @@ export async function POST(req, res) {
         // console.log('mio', data.headers)
 
         const cookiesG = data.headers.get('set-cookie');
-        console.log('d', cookiesG)
         const cookiesArray = cookiesG[0].split(';').map(cookie => cookie.trim().split('='));
         // console.log('dg', cookiesArray)
         // console.log('dgdf', cookiesArray[0][1])
@@ -52,12 +51,10 @@ export async function POST(req, res) {
 export async function PUT(request) {
 
     const b = request.cookies.get('access_token')
-    console.log('runing', b)
     try {
         const da = await request.json()
         const newName = da.name
-        console.log('route.js', da)
-        console.log('try running')
+
         // const data = await fetch(`http://localhost:8800/api/users/658099773b4edc5aade8784b`, {
         //     method: 'PUT',
         //     body: JSON.stringify({
@@ -77,9 +74,7 @@ export async function PUT(request) {
         const data = await axios.put('https://pixelvideo.up.railway.app/api/users/658644414a035826f6a410aa', {
             name: newName
         }, config)
-        console.log('dddd', data.data)
 
-        console.log('try running s', data.statusText)
         return NextResponse.json(data.data)
     } catch (error) {
         console.log('Error', error.message)

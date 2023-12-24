@@ -6,8 +6,6 @@ import Comment from "./Comment";
 
 const CommentsPage = ({ videoId }) => {
 
-  console.log('comments s', videoId)
-
   const { currentUser } = useSelector((state) => state.user);
 
   const [comments, setComments] = useState([]);
@@ -16,11 +14,9 @@ const CommentsPage = ({ videoId }) => {
 
 
   useEffect(() => {
-    console.log('running comment')
     const fetchComments = async () => {
       try {
         const res = await axios.get(`/api/comments/${videoId}`);
-        console.log('commenst', res.data)
         setComments(res.data);
       } catch (err) { }
     };
@@ -28,10 +24,8 @@ const CommentsPage = ({ videoId }) => {
   }, [videoId]);
 
   const handleComment = async () => {
-    console.log('comments', commentText)
     try {
       const res = await axios.post(`/api/comments/comment/${videoId}`, {commentText} )
-      console.log('upload status', res.status)
 
     } catch (error) {
       console.log('ddd', error.message)
