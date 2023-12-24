@@ -123,7 +123,7 @@ body {
   }
 
   .bottombar {
-    @apply fixed bottom-0 z-10 w-full rounded-t-3xl bg-neutral-900  p-4 md:hidden;
+    @apply fixed bottom-0 z-10 w-full bg-neutral-900  p-4 md:hidden;
   }
 
   .bottombar_container {
@@ -131,7 +131,7 @@ body {
   }
 
   .bottombar_link {
-    @apply relative flex flex-col items-center gap-2 rounded-lg p-2 sm:flex-1 sm:px-2 sm:py-2.5;
+    @apply relative flex flex-col items-center gap-2 rounded-lg p-2 sm:flex-1 sm:px-2 sm:py-1;
   }
 
 }

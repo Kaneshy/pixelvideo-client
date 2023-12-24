@@ -17,7 +17,7 @@ const Navbar = () => {
 
     return (
         <nav className="flex select-none top-0 z-30 bg-color-main w-full top-22 p-2 text-white justify-between ">
-            <div className='flex items-center ml-8 max-sm:hidden gap-x-2'>
+            <div className='flex items-center ml-8  gap-x-2'>
                 {/* <div className="max-md:hidden" onClick={() => setsideBar(!sideBar)}>
                     {sideBar ? (
                         <RiMenu3Fill size={25} className="text-neutral-400 hover:text-neutral-200" />
@@ -29,8 +29,8 @@ const Navbar = () => {
                 href='/Home'
                 className="flex"
                 >
-                    <Image src='/assets/logoA.png' alt='logo' width={28} height={28} />
-                    <p className=' text-heading3-bold font-bold text-xl text-light-1 max-xs:hidden p-2'> PixelVideo </p>
+                    <Image src='/assets/logB.png' className="" alt='logo' width={50} height={50} />
+                    <p className=' text-heading3-bold font-bold text-xl text-light-1 max-sm:hidden p-2'> PixelVideo </p>
                 </Link>
             </div>
 

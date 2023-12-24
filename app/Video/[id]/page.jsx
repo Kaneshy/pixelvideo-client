@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchSuccess, like, dislike } from "@/redux/features/videoSlice.js";
 import { subscription } from "@/redux/features/userSlice.js";
 import CommentsPage from '@/components/Comments';
-import { BiLike, BiSolidLike, BiDislike, BiSolidDislike    } from "react-icons/bi";
+import { BiLike, BiSolidLike, BiDislike, BiSolidDislike } from "react-icons/bi";
 
 
 const VideoPage = ({ params }) => {
@@ -84,17 +84,18 @@ const VideoPage = ({ params }) => {
         <>
           <section className='flex flex-col p-4 gap-y-4 max-w-b'>
             <h2 className='text-body-bold'>{currentVideo.title}</h2>
-            <div className='flex justify-between'>
-              <div className='flex'>
-                <div>
+            <div className='flex justify-between max-sm:flex-col gap-y-4'>
+              <div className='flex max-sm:w-full max-sm:justify-between'>
+                <div className='flex'>
                   <img
                     className='rounded-full mr-2'
                     width={45} src={channel.img} alt="" />
+                  <div>
+                    <p className='text-small-semibold'>{channel.name}</p>
+                    <p className='text-small-medium text-neutral-400'> {channel.subscribers} subscribers</p>
+                  </div>
                 </div>
-                <div>
-                  <p className='text-small-semibold'>{channel.name}</p>
-                  <p className='text-small-medium text-neutral-400'> {channel.subscribers} subscribers</p>
-                </div>
+
                 <div className='flex items-center gap-x-4  '>
                   <div className=' justify-between px-6 py-2 rounded-xl '>
                     <button className='ml-6 px-4 py-2 bg-white text-black rounded-3xl text-small-semibold'
@@ -123,9 +124,9 @@ const VideoPage = ({ params }) => {
                     onClick={handleDislike}
                   >
                     {currentVideo.dislikes?.includes(currentUser._id) ? (
-                      <BiSolidDislike  size={22} />
+                      <BiSolidDislike size={22} />
                     ) : (
-                      <BiDislike  size={22} />
+                      <BiDislike size={22} />
                     )}{''}
                     {currentVideo.dislikes?.length}
                   </button>
