@@ -10,6 +10,7 @@ const Card = ({video}) => {
       useEffect(() => {
         const fetchChannel = async () => {
           const res = await axios.get(`/api/user/${video.userId}`);
+          console.log('sti', res.data)
           setChannel(res.data);
         };
         fetchChannel();
@@ -28,7 +29,13 @@ const Card = ({video}) => {
                     </div>
                     <div className="flex flex-col ml-2">
                         <h1 className="max-h-6 flex overflow-hidden text-base1-semibold">{video.title}</h1>
-                        <p className="text-small-regular text-neutral-400"> {channel.name}</p>
+                        <p className="text-small-regular text-neutral-400"> 
+                        {channel ? (
+                            <p>{channel.name}</p>  
+                        ) : (
+                            <p>PixelUser</p>
+                        )}
+                        </p>
                         <p className="text-small-regular text-neutral-400">{video.views} views 18h ago</p>
                     </div>
                 </div>

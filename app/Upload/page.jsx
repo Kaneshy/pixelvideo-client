@@ -9,6 +9,7 @@ import {
 import app from "@/firebase";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from 'react-redux';
 
 const UploadPage = () => {
   const [img, setImg] = useState(undefined);
@@ -18,6 +19,9 @@ const UploadPage = () => {
   const [inputs, setInputs] = useState({});
   const [tags, setTags] = useState([]);
   const router = useRouter()
+
+  
+  const { currentUser } = useSelector(state => state.user)
 
 
   const handleChange = (e) => {
@@ -94,11 +98,15 @@ const UploadPage = () => {
 
   const handleUpload = async (e) => {
     e.preventDefault();
-    console.log(inputs, tags)
-    const b = { ...inputs }
+    const currentUserInfo = {
+      imgPfp: currentUser.img,
+      nameChannel: currentUser.name
+    }
+    const b = { ...inputs, currentUserInfo }
+
     console.log('ddfdf', b)
     try {
-      const res = await axios.post("/api/videos/upload", { ...inputs, tags })
+      const res = await axios.post("/api/videos/upload", { b, tags })
       console.log('upload status', res.status)
 
       if (res.status === 200) {
@@ -111,8 +119,13 @@ const UploadPage = () => {
     // res.status===200 && navigate(`/video/${res.data._id}`)
   }
 
+  const handletest = () => {
+    console.log('cu', currentUser)
+  }
+
   return (
     <main>
+      <button className="bg-blue p-2" onClick={handletest}>tap</button>
       <div className="max-w-xl mx-auto mt-8 p-4 bg-neutral-900 rounded-lg">
         <h1 className='text-center  font-bold text-2xl text-white border-a1 pb-2 mb-6 '>Upload your video </h1>
         
