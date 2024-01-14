@@ -17,20 +17,13 @@ const Navbar = () => {
 
     return (
         <nav className="flex select-none top-0 z-30 bg-color-main w-full top-22 p-2 text-white justify-between ">
-            <div className='flex items-center ml-8  gap-x-2'>
-                {/* <div className="max-md:hidden" onClick={() => setsideBar(!sideBar)}>
-                    {sideBar ? (
-                        <RiMenu3Fill size={25} className="text-neutral-400 hover:text-neutral-200" />
-                    ) : (
-                        <FiMenu size={25} className="text-neutral-400 hover:text-neutral-200" />
-                    )}
-                </div> */}
+            <div className='flex items-center ml-8 '>
                 <Link
                 href='/Home'
                 className="flex"
                 >
                     <Image src='/assets/logB.png' className="" alt='logo' width={50} height={50} />
-                    <p className=' text-heading3-bold font-bold text-xl text-light-1 max-sm:hidden p-2'> PixelVideo </p>
+                    <p className=' text-heading3-bold text-font-a1 text-xl text-light-1 max-sm:hidden flex items-center justify-center'> PixelVideo </p>
                 </Link>
             </div>
 

@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Comment from "./Comment";
+import MainNoti from "./ui/MainNoti";
 
 const CommentsPage = ({ videoId }) => {
 
@@ -10,6 +11,7 @@ const CommentsPage = ({ videoId }) => {
 
   const [comments, setComments] = useState([]);
   const [commentText, setcommentText] = useState('')
+  const [test, settest] = useState(false)
 
 
 
@@ -21,11 +23,14 @@ const CommentsPage = ({ videoId }) => {
       } catch (err) { }
     };
     fetchComments();
-  }, [videoId]);
+  }, [videoId, test]);
 
   const handleComment = async () => {
+    if(!currentUser) return;
     try {
       const res = await axios.post(`/api/comments/comment/${videoId}`, {commentText} )
+      console.log(res.ok)
+      settest(!test)
 
     } catch (error) {
       console.log('ddd', error.message)
@@ -41,7 +46,7 @@ const CommentsPage = ({ videoId }) => {
       <section className="flex">
         <div className="align-middle items-center flex px-2">
           <img
-            src={currentUser.img} alt=""
+            src={ currentUser && currentUser.img} alt=""
             className='rounded-full mr-2'
             width={45}
           />

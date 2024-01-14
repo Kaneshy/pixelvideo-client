@@ -14,44 +14,50 @@ const VideoPage = ({ params }) => {
 
   const { currentUser } = useSelector((state) => state.user)
   const { currentVideo } = useSelector((state) => state.video)
+  console.log('aaaaaaaaaaaaaaaaaaaaaaaa')
 
   const dispatch = useDispatch()
 
-  // const [video, setvideo] = useState({})
-  const [channel, setchannel] = useState({})
+  const [channel, setChannel] = useState({})
   // const { currentUser } = useSelector(state => state.user)
   // const dispatch = useDispatch
 
   useEffect(() => {
-    const fetchVideos = async () => {
+    console.log('bbbb')
+    const fetchData = async () => {
       try {
         const res = await axios.get(`/api/videos/video/${params.id}`);
+        console.log('res', res.data);
+  
+        // Dispatch an action to update the state or trigger a re-render
+        dispatch(fetchSuccess(res.data));
+  
+        // Make another request after the initial response
         const channelRes = await axios.get(`/api/user/${res.data.userId}`);
-
-
-        // setvideo(res.data);
-        setchannel(channelRes.data);
-        dispatch(fetchSuccess(res.data))
-
-
-
+        setChannel(channelRes.data);
+  
+        // Any additional logic after the second request
       } catch (error) {
-        console.error('Error fetching videos:', error);
+        console.error('Error fetching data:', error);
       }
     };
-    fetchVideos();
-  }, [dispatch]);
+  
+    fetchData();
+  }, [params.id, dispatch]);
 
   const handleLike = async () => {
+    if(!currentUser) return
     await axios.put(`/api/user/like/${currentVideo._id}`);
     dispatch(like(currentUser._id));
   };
   const handleDislike = async () => {
+    if(!currentUser) return
     await axios.put(`/api/user/dislike/${currentVideo._id}`);
     dispatch(dislike(currentUser._id));
   };
 
   const handleSub = async () => {
+    if(!currentUser) return
     currentUser.subscribedUsers.includes(channel._id)
       ? await axios.put(`/api/user/unsub/${channel._id}`)
       : await axios.put(`/api/user/sub/${channel._id}`);
@@ -83,9 +89,9 @@ const VideoPage = ({ params }) => {
                 <div className='flex'>
                   <img
                     className='rounded-full mr-2'
-                    width={45} src={channel.img} alt="" />
+                    width={45} src={currentVideo.imgPfp} alt="" />
                   <Link href={`/Profile/${channel._id}`}>
-                    <p className='text-small-semibold'>{channel.name}</p>
+                    <p className='text-small-semibold'>{currentVideo.nameChannel}</p>
                     <p className='text-small-medium text-neutral-400'> {channel.subscribers} subscribers</p>
                   </Link>
                 </div>
@@ -95,7 +101,7 @@ const VideoPage = ({ params }) => {
                     <button className='ml-6 px-4 py-2 bg-white text-black rounded-3xl text-small-semibold'
                       onClick={handleSub}
                     >
-                      {currentUser.subscribedUsers?.includes(channel._id) ? 'subscribed' : 'subcribe'}
+                      { currentUser && currentUser.subscribedUsers?.includes(channel._id) ? 'subscribed' : 'subcribe'}
                     </button>
                   </div>
                 </div>
@@ -106,7 +112,7 @@ const VideoPage = ({ params }) => {
                     className='m-r gap-x-2 pr-2 flex items-center hover:scale-105 text-small-semibold'
                     onClick={handleLike}
                   >
-                    {currentVideo.likes?.includes(currentUser._id) ? (
+                    {currentUser && currentVideo.likes?.includes(currentUser._id) ? (
                       <BiSolidLike size={22} />
                     ) : (
                       <BiLike size={22} />
@@ -117,7 +123,7 @@ const VideoPage = ({ params }) => {
                     className='gap-x-2 px-2 flex items-center hover:scale-105 text-small-semibold'
                     onClick={handleDislike}
                   >
-                    {currentVideo.dislikes?.includes(currentUser._id) ? (
+                    {currentUser && currentVideo.dislikes?.includes(currentUser._id) ? (
                       <BiSolidDislike size={22} />
                     ) : (
                       <BiDislike size={22} />

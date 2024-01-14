@@ -14,14 +14,15 @@ const Searchbar = () => {
         router.push(`/api/videos/search?query=${q}`);
     }
 
-    const handlequeryb = () => {
+    const handlequeryb = (e) => {
+        e.preventDefault()
         router.push(`/Search?query=${q}`);
     }
 
 
     return (
         <div className="flex items-center w-2/3 max-w-xl ml-4 px-4  ">
-            <div className="flex w-full ">
+            <form onSubmit={handlequeryb} className="flex w-full ">
                 <input
                     type="text"
                     placeholder="Search"
@@ -29,11 +30,10 @@ const Searchbar = () => {
                     className="border w-full border-gray-600 bg-neutral-900 rounded-l-full px-4 py-2 focus:outline-none focus:ring focus:border-blue-500  "
                 />
                 <button
-                    onClick={handlequeryb}
                     className=" bg-gray-600 hover:bg-gray-300 text-gray-200 px-3 py-2  rounded-r-full">
                     <IoSearchOutline size={24} />
                 </button>
-            </div>
+            </form>
         </div>
     )
 }

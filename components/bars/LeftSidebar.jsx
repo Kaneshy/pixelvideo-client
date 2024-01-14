@@ -3,12 +3,20 @@ import { sidebarLinks, sidebarTrens } from '@/constants'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
+import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
 // import Gotoprofile from '../Gotoprofile'
 
 const LeftSidebar = () => {
 
   const router = useRouter()
   const pathname = usePathname()
+  const { currentUser } = useSelector((state) => state.user)
+
+  useEffect(() => {
+    console.log('cure', currentUser)
+  }, [])
+
 
   return (
     <section className="custom-scrollbar leftsidebar">
@@ -37,7 +45,23 @@ const LeftSidebar = () => {
             </Link>
           )
         })}
-        {/* <Gotoprofile/> */}
+
+        {currentUser && (
+          <Link
+            href={`/Profile/${currentUser._id}`}
+            className={`leftsidebar_link 'bg-primary-500'}`}
+          >
+            <Image
+              src={'/assets/user.svg'}
+              alt={'user'}
+              width={24}
+              height={24}
+            />
+
+            <p className={`text-light-1 max-lg:hidden px-4 `}>Profile</p>
+          </Link>
+        )}
+
       </div>
 
       <div className="flex w-full pt-2 flex-1 flex-col gap-5 px-6 ">
@@ -61,7 +85,7 @@ const LeftSidebar = () => {
                 height={34}
               />
 
-              <p className={`text-light-1 max-lg:hidden px-4 `}>{link.label}</p>  
+              <p className={`text-light-1 max-lg:hidden px-4 `}>{link.label}</p>
             </Link>
           )
         })}

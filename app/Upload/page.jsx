@@ -20,7 +20,7 @@ const UploadPage = () => {
   const [tags, setTags] = useState([]);
   const router = useRouter()
 
-  
+
   const { currentUser } = useSelector(state => state.user)
 
 
@@ -102,15 +102,16 @@ const UploadPage = () => {
       imgPfp: currentUser.img,
       nameChannel: currentUser.name
     }
-    const b = { ...inputs, currentUserInfo }
-
+    const b = { ...inputs, ...currentUserInfo }
     console.log('ddfdf', b)
     try {
-      const res = await axios.post("/api/videos/upload", { b, tags })
+      const res = await axios.post("/api/videos/upload", { ...b, tags })
       console.log('upload status', res.status)
+      console.log('res', res.data)
 
       if (res.status === 200) {
-          router.push(`/Home`);
+        router.push(`/Video/${res.data._id}`);
+        console.log('ok')
       }
 
     } catch (error) {
@@ -124,30 +125,51 @@ const UploadPage = () => {
   }
 
   return (
-    <main>
-      <button className="bg-blue p-2" onClick={handletest}>tap</button>
-      <div className="max-w-xl mx-auto mt-8 p-4 bg-neutral-900 rounded-lg">
+    <main className="select-none">
+      <div className="max-w-xl mx-auto flex flex-col mt-8 p-4 bg-neutral-900 rounded-lg">
         <h1 className='text-center  font-bold text-2xl text-white border-a1 pb-2 mb-6 '>Upload your video </h1>
-        
-        <div className="mb-4">
-          <label htmlFor="video" className=" text-gray-400 justify-around gap-x-2 font-bold mb-2 flex  ">
+
+        <div className="mb-4 flex flex-col gap-y-4">
+          <label htmlFor="video" className=" text-gray-400 justify-around gap-x-2 font-bold flex  ">
             <p className="text-small-semibold"> Select video here</p>
             <div className="bg-blue-2 text-small-semibold text-white p-2 rounded-xl hover:bg-blue-3  ">Select form computer</div>
           </label>
-          {videoPerc > 0 ? ('Uploading ' + videoPerc + '%') : (
+          {videoPerc > 0 ? (
+            <div class="w-full text-tiny-medium text-gray-400 bg-gray-800 rounded-full ">
+              <div class="bg-blue-3 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style={{ width: videoPerc + '%' }}> {videoPerc}%</div>
+            </div>
+          ) : (
             <input type="file" id="video" onChange={(e) => setVideo(e.target.files[0])} className="border-gray-300 hidden" />
+          )}
+          {inputs.videoUrl && (
+            <div className="video-container">
+              <iframe width="1920" height="1080"
+                src={inputs.videoUrl} allow="autoplay; fullscreen" controls allowFullScreen>
+              </iframe>
+            </div>
           )}
         </div>
 
-        <div className="mb-4">
-          <label htmlFor="thumbnail" className=" text-gray-400 justify-around gap-x-2 font-bold mb-2 flex  ">
+        <div className="mb-4 flex flex-col gap-y-4">
+          <label htmlFor="thumbnail" className=" text-gray-400 justify-around gap-x-2 font-bold flex  ">
             <p className="text-small-semibold"> Select thumbnail here</p>
             <div className="bg-blue-2 text-small-semibold text-white p-2 rounded-xl hover:bg-blue-3  ">Select form computer</div>
           </label>
-          {imgPerc > 0 ? ('Uploading ' + imgPerc + '%') : (
+
+          {imgPerc > 0 ? (
+            <div class="w-full text-tiny-medium text-gray-400 bg-gray-800 rounded-full ">
+              <div class="bg-blue-3 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style={{ width: videoPerc + '%' }}> {videoPerc}%</div>
+            </div>
+          ) : (
             <input type="file" id="thumbnail" onChange={(e) => setImg(e.target.files[0])} className="border-gray-300 hidden" />
           )}
+
+          <div className="w-full flex ">
+            <img className="object-contain w-full " src={inputs.imgUrl} alt="" />
+          </div>
         </div>
+
+
 
         {/* <div className="mb-4">
           <label htmlFor="thumbnail" className="block text-gray-400 font-bold mb-2">Thumbnail:</label>
@@ -176,7 +198,7 @@ const UploadPage = () => {
           Submit
         </button>
       </div>
-    </main>
+    </main >
   )
 }
 

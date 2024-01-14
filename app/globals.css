@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&display=swap');
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -23,6 +24,10 @@ body {
 
 .bg-color-main {
   background-color: #0f0f0f
+}
+
+.text-font-a1 {
+  font-family: 'Bodoni Moda', serif;
 }
 
 .home-sv-a {

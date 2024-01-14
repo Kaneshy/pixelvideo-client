@@ -12,7 +12,7 @@ const TrendTopbar = () => {
             href={`${link.route}/${link.label}`}
             key={link.label}
           >
-            <p className='rounded-xl bg-neutral-700 px-4 py-1'>{link.label}</p>  
+            <p className='rounded-xl hover:bg-neutral-500 bg-neutral-700 px-4 py-1'>{link.label}</p>  
           </Link>
         )
       })}

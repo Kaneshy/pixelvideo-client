@@ -1,3 +1,4 @@
+
 export const social = [
     {
         ruta: '/Home',
@@ -53,8 +54,8 @@ export const sidebarLinks = [
     },
     // {
     //     imgURL: "/assets/user.svg",
-    //     route: "/Video",
-    //     label: "Video",
+    //     route: `/Profile/${currentUser._id}`,
+    //     label: "Profile",
     // },
     // {
     //     imgURL: "/assets/search.svg",

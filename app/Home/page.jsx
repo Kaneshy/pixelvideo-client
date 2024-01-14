@@ -7,23 +7,8 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import TrendTopbar from '@/components/bars/TrendTopbar'
 
-const HomePage = () => {
 
-  // const fadeInAnimationVariants = {
-  //   initial: {
-  //     opacity: 0,
-  //     y: 100,
-  //   },
-  //   animate: (index) => {
-  //     return {
-  //       opacity: 1,
-  //       y: 0,
-  //       transition: {
-  //         delay: 0.05 * index
-  //       }
-  //     }
-  //   }
-  // }
+const HomePage = () => {
 
   const [videos, setVideos] = useState([]);
 
@@ -49,20 +34,12 @@ const HomePage = () => {
         {videos.map((video, index) => {
           return (
             <Link href={`/Video/${video._id}`} key={video._id}>
-              <div
-                className='rounded-2xl select-none relative bg-opacity-40 flex flex-col p-2 gap-y-7   shadow bg-neutral-900 max-sm:p-0 '
-                // initial='initial'
-                // variants={fadeInAnimationVariants}
-                // whileInView='animate'
-                // whileHover={{ scale: 1.05 }}
-                // viewport={{ once: true }}
-                // custom={index}
-              >
+              <div className='rounded-2xl select-none relative bg-opacity-40 flex flex-col p-2 gap-y-7   shadow bg-neutral-900 max-sm:p-0 '>
+
                 <Card video={video} />
 
               </div>
             </Link>
-
           )
         })}
       </div>

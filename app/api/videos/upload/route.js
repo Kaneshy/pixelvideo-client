@@ -5,6 +5,7 @@ import { cookies } from 'next/headers'
 
 export async function POST(req, res) {
     const body = await req.json();
+    console.log('db', body)
     console.log('running upload server nextjs')
     // console.log('req.', body)
     const b = req.cookies.get('access_token')
