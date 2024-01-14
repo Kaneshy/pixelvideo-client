@@ -22,15 +22,15 @@ const Searchbar = () => {
 
     return (
         <div className="flex items-center w-2/3 max-w-xl ml-4 px-4  ">
-            <form onSubmit={handlequeryb} className="flex w-full ">
+            <form onSubmit={handlequeryb} className="flex w-full border border-gray-600 rounded-full  ">
                 <input
                     type="text"
                     placeholder="Search"
                     onChange={(e) => setQ(e.target.value)}
-                    className="border w-full border-gray-600 bg-neutral-900 rounded-l-full px-4 py-2 focus:outline-none focus:ring focus:border-blue-500  "
+                    className=" w-full rounded-l-full  bg-neutral-900  px-4 py-2 focus:outline-none focus:ring focus:border-blue-500  "
                 />
                 <button
-                    className=" bg-gray-600 hover:bg-gray-300 text-gray-200 px-3 py-2  rounded-r-full">
+                    className=" hover:bg-gray-700  bg-neutral-900 text-gray-400 px-3 py-2  rounded-r-full">
                     <IoSearchOutline size={24} />
                 </button>
             </form>
