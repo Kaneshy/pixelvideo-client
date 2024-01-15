@@ -1,7 +1,7 @@
 export const bottonLinks = [
     {
         imgURL: "/assets/home.svg",
-        route: "/Home",
+        route: "/",
         label: "Home",
     },
     {

@@ -1,14 +1,14 @@
 
 export const social = [
     {
-        ruta: '/Home',
+        ruta: '/',
         name: 'Home'
     }
 ]
 
 export const videosData = [
     {
-        ruta: '/Home',
+        ruta: '/',
         name: 'Home'
     },
     {
@@ -24,7 +24,7 @@ export const videosData = [
         name: 'video'
     },
     {
-        ruta: '/Home',
+        ruta: '/',
         name: 'Home'
     },
     {
@@ -44,7 +44,7 @@ export const videosData = [
 export const sidebarLinks = [
     {
         imgURL: "/assets/home.svg",
-        route: "/Home",
+        route: "/",
         label: "Home",
     },
     {

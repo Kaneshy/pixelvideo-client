@@ -19,7 +19,7 @@ const Navbar = () => {
         <nav className="flex select-none top-0 z-30 bg-color-main w-full top-22 p-2 text-white justify-between ">
             <div className='flex items-center ml-8 '>
                 <Link
-                href='/Home'
+                href='/'
                 className="flex"
                 >
                     <Image src='/assets/logB.png' className="" alt='logo' width={50} height={50} />
